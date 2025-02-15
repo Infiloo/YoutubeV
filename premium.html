@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YoutubeV Premium</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Main Content */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .content {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: scale(0.8);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: slideIn 1s;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInText 1.5s;
+        }
+
+        @keyframes fadeInText {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: #ff7e5f;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #feb47b;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Main Website Content -->
+    <div class="container">
+        <div class="content">
+            <h1>YoutubeV Premium</h1>
+            <p>Watch Youtube without 5 Second redirect wait time</p>
+            <button class="btn" id="youtubeButton">Watch YouTube</button>
+        </div>
+    </div>
+
+    <script>
+        // Funktion, um ohne Countdown zu YouTube zu gelangen
+        document.getElementById('youtubeButton').addEventListener('click', function() {
+            // Direkt zu YouTube weiterleiten
+            window.location.href = 'https://www.youtube.com';
+        });
+    </script>
+</body>
+</html>

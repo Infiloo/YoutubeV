@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YoutubeV</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #fff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Countdown Bereich */
+        .downtown {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            opacity: 0;
+            display: none;
+        }
+
+        /* Main Content */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .content {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: scale(0.8);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: slideIn 1s;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInText 1.5s;
+        }
+
+        @keyframes fadeInText {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .btn, .skip-btn, .ytv-btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: #ff7e5f;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover, .skip-btn:hover, .ytv-btn:hover {
+            background-color: #feb47b;
+        }
+
+        .skip-btn {
+            margin-top: 20px;
+        }
+
+        /* Neuer Abstand für den YT Link Button */
+        .ytv-btn {
+            margin-top: 10px;  /* Abstand zum vorherigen Button */
+        }
+
+        /* Schimmernde Umrandung für Premium Button */
+        .highlight {
+            animation: shimmer 1.5s infinite;
+            border: 3px solid transparent;
+            background-color: transparent;  /* Hintergrund bleibt transparent */
+            color: white;
+            box-shadow: 0 0 10px #ff7e5f, 0 0 20px #feb47b, 0 0 30px #ff7e5f;
+        }
+
+        /* Schimmer-Animation für Premium Button */
+        @keyframes shimmer {
+            0% {
+                border-color: #ff7e5f;
+                background-position: 400% 0;
+            }
+            50% {
+                border-color: #feb47b;
+                background-position: 0 0;
+            }
+            100% {
+                border-color: #ff7e5f;
+                background-position: 400% 0;
+            }
+        }
+
+        /* Animierte Einführung des Premium Buttons */
+        @keyframes slideInButton {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Premium Button Anfangsanimation */
+        #premiumButton {
+            animation: slideInButton 1s ease-out, shimmer 1.5s infinite;
+        }
+
+        /* Footer-Links zentriert & nebeneinander */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Abstand zwischen den Links */
+            margin-top: 20px; /* Verringert den Abstand nach oben */
+            font-size: 1rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: normal;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Website Content -->
+    <div class="container">
+        <div class="content">
+            <h1>YoutubeV</h1>
+            <p>The next gen youtube Player right in your Browser free and Fast!</p>
+            <button class="btn" id="youtubeButton">Open YouTube</button>
+            <a href="premium.html">
+                <button class="skip-btn" id="premiumButton">Join Pro (Skip wait time)</button>
+            </a>
+            <!-- Neuer Button zu YtVLink.html mit Abstand -->
+            <a href="YtVLink.html">
+                <button class="ytv-btn">Watch Yt with a Link</button>
+            </a>
+        </div>
+    </div>
+
+    <!-- Countdown Bereich -->
+    <div class="downtown">
+        <p id="countdownText">5</p>
+    </div>
+
+    <!-- Footer Links -->
+    <div class="footer-links">
+        <a href="https://tame-centaur-df2.notion.site/Infiloo-19b0c5db49e080f09b37ec3c47b367a7?pvs=4" target="_blank">About Me</a> | 
+        <a href="https://tame-centaur-df2.notion.site/Updates-Changelogs-19b0c5db49e08018ab4af046a7e3db22?pvs=4" target="_blank">Changelogs & Updates</a>
+    </div>
+
+    <script>
+        // Coole Animation bei Seitenöffnung
+        window.onload = function() {
+            // Premium Button sofort animieren und leuchten lassen
+            document.getElementById('premiumButton').classList.add('highlight');
+
+            // Verzögerung beim Anzeigen der Seite
+            setTimeout(function() {
+                document.querySelector('.container').style.opacity = '1';
+                document.querySelector('.container').style.transition = 'opacity 0s';
+            }, 500); // Verzögerung von 500ms
+        }
+
+        // Funktion, um den Countdown anzuzeigen und die Weiterleitung zu starten
+        document.getElementById('youtubeButton').addEventListener('click', function() {
+            // Alle anderen Elemente ausblenden
+            document.querySelector('.container').style.opacity = '0';
+            document.querySelector('.container').style.transition = 'opacity 1s ease';
+
+            // Countdown anzeigen
+            const countdownElement = document.querySelector('.downtown');
+            countdownElement.style.display = 'block';
+            countdownElement.style.opacity = '1';
+
+            let countdown = 5;
+            const countdownText = document.getElementById('countdownText');
+            
+            // Countdown abspielen
+            const countdownInterval = setInterval(function() {
+                countdown--;
+                countdownText.textContent = countdown;
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownText.textContent = "Weiterleitung...";
+                    // Weiterleitung zu YouTube
+                    window.location.href = 'https://www.youtube.com';
+                }
+            }, 1000);
+        });
+
+        // Skip-Button
+        document.querySelector('.skip-btn').addEventListener('click', function() {
+            window.location.href = 'premium.html';  // Weiterleitung zu der Premium-Seite
+        });
+    </script>
+</body>
+</html>

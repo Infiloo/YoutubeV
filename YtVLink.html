@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Embed Viewer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Main Content */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .content {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: scale(0.8);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: slideIn 1s;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInText 1.5s;
+        }
+
+        @keyframes fadeInText {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .input-field {
+            padding: 10px;
+            font-size: 1.2rem;
+            width: 80%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: #ff7e5f;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #feb47b;
+        }
+
+        /* Countdown Bereich */
+        .downtown {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            opacity: 0;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Main Website Content -->
+    <div class="container">
+        <div class="content">
+            <h1>YoutubeV Embed</h1>
+            <p>Please type in the video link from Youtube to watch it</p>
+            
+            <!-- Textfeld für den YouTube Link -->
+            <input type="text" id="youtubeLink" class="input-field" placeholder="Type in your Youtube video Link" />
+
+            <!-- Button zum Video ansehen -->
+            <button class="btn" id="showVideoButton">Watch the Video</button>
+
+            <!-- Bereich für eingebettetes YouTube-Video -->
+            <div id="videoContainer" style="margin-top: 20px;">
+                <!-- Hier wird das Video eingebettet -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Wenn der Button geklickt wird, YouTube Video anzeigen
+        document.getElementById('showVideoButton').addEventListener('click', function() {
+            const youtubeLink = document.getElementById('youtubeLink').value;
+
+            // Überprüfen, ob der Link ein gültiger YouTube-Link ist
+            if (youtubeLink.includes("youtube.com/watch?v=")) {
+                const videoId = youtubeLink.split("v=")[1].split("&")[0]; // ID extrahieren
+                const iframe = `<iframe width="400" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                
+                // Das Video einbetten
+                document.getElementById('videoContainer').innerHTML = iframe;
+            } else {
+                alert("Please type in a youtube link that looks like this: youtube.com/watch?v=######");
+            }
+        });
+    </script>
+</body>
+</html>
