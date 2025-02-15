@@ -8,4 +8,4 @@ Changelogs&Updates: https://tame-centaur-df2.notion.site/Updates-Changelogs-19b0
 
 About Me: https://tame-centaur-df2.notion.site/Infiloo-19b0c5db49e080f09b37ec3c47b367a7 
 
-Linktree: guns.lol/infiloo 
+Linktree: https://guns.lol/infiloo 
